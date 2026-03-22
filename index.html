@@ -21,7 +21,6 @@
             min-height: 100vh;
         }
 
-        /* Overlay to make text readable */
         body::before {
             content: '';
             position: fixed;
@@ -33,7 +32,6 @@
             z-index: -1;
         }
 
-        /* Navigation Bar Styles */
         .navbar {
             background-color: rgba(44, 62, 80, 0.95);
             padding: 1rem 2rem;
@@ -117,7 +115,6 @@
             background-color: #7f8c8d;
         }
 
-        /* Page Content Styles */
         .content {
             max-width: 1200px;
             margin: 2rem auto;
@@ -149,7 +146,6 @@
             font-size: 1.1rem;
         }
 
-        /* Home Page Specific Styles */
         .hero-section {
             text-align: center;
             padding: 2rem 0;
@@ -193,7 +189,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Social Media Icons */
         .social-icons {
             display: flex;
             justify-content: center;
@@ -244,7 +239,6 @@
             padding: 2rem;
         }
 
-        /* About Us Page Styles */
         .team-section {
             display: flex;
             flex-wrap: wrap;
@@ -277,7 +271,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo">
             ✈️ <span>Travel</span>Wise
@@ -294,7 +287,6 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="content">
         <!-- Home Page -->
         <div id="home" class="page active-page">
@@ -373,20 +365,71 @@
             </div>
         </div>
 
-        <!-- Contact Us Page -->
+        <!-- Contact Us Page with Form -->
         <div id="contact" class="page">
             <h1>Contact Us</h1>
-            <p>We'd love to hear from you! Reach out with any questions, feedback, or collaboration ideas.</p>
-            <p>📧 <strong>Email:</strong> hello@travelwise.com</p>
-            <p>📞 <strong>Phone:</strong> +1 (555) 123-4567</p>
-            <p>📍 <strong>Address:</strong> 123 Travel Street, Wanderlust City, 10001</p>
-            <p>🕒 <strong>Hours:</strong> Monday - Friday, 9 AM - 6 PM EST</p>
-            <p>💬 <strong>Live Chat:</strong> Available 24/7 on our website</p>
+            <p>We'd love to hear from you! Fill out the form below and we'll get back to you within 24 hours.</p>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h2>📞 Get in Touch</h2>
+                    <p>📧 <strong>Email:</strong> hello@travelwise.com</p>
+                    <p>📞 <strong>Phone:</strong> +1 (555) 123-4567</p>
+                    <p>📍 <strong>Address:</strong> 123 Travel Street, Wanderlust City, 10001</p>
+                    <p>🕒 <strong>Hours:</strong> Monday - Friday, 9 AM - 6 PM EST</p>
+                    <p>💬 <strong>Live Chat:</strong> Available 24/7 on our website</p>
+                    
+                    <div class="social-icons" style="justify-content: flex-start; margin-top: 1.5rem;">
+                        <a href="#" target="_blank">📘</a>
+                        <a href="#" target="_blank">🐦</a>
+                        <a href="#" target="_blank">📷</a>
+                        <a href="#" target="_blank">🔗</a>
+                    </div>
+                </div>
+                
+                <div style="flex: 2; min-width: 300px;">
+                    <h2>✉️ Send us a Message</h2>
+                    <form id="contactForm" onsubmit="sendEmail(event)">
+                        <div style="margin-bottom: 1rem;">
+                            <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #2c3e50;">Full Name *</label>
+                            <input type="text" id="name" name="name" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #2c3e50;">Email Address *</label>
+                            <input type="email" id="email" name="email" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <label for="subject" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #2c3e50;">Subject *</label>
+                            <select id="subject" name="subject" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                                <option value="">Select a subject</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                                <option value="Booking Support">Booking Support</option>
+                                <option value="Partnership">Partnership Opportunity</option>
+                                <option value="Feedback">Feedback / Suggestions</option>
+                                <option value="Complaint">Report an Issue</option>
+                            </select>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #2c3e50;">Message *</label>
+                            <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; resize: vertical;"></textarea>
+                        </div>
+                        
+                        <button type="submit" style="background-color: #ff6b6b; color: white; padding: 0.75rem 2rem; border: none; border-radius: 25px; font-size: 1rem; cursor: pointer; transition: all 0.3s;">
+                            📧 Send Message
+                        </button>
+                        <button type="reset" style="background-color: #95a5a6; color: white; padding: 0.75rem 2rem; border: none; border-radius: 25px; font-size: 1rem; cursor: pointer; margin-left: 1rem; transition: all 0.3s;">
+                            🗑️ Clear Form
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Sample travel recommendations database
         const recommendations = [
             { name: "Paris, France", type: "city", description: "The City of Light with iconic Eiffel Tower and world-class cuisine." },
             { name: "Bali, Indonesia", type: "beach", description: "Tropical paradise with stunning beaches and spiritual culture." },
@@ -400,22 +443,15 @@
             { name: "Phuket, Thailand", type: "beach", description: "Vibrant island with beautiful beaches and nightlife." }
         ];
 
-        // Function to switch between pages
         function showPage(pageName) {
-            // Hide all pages
             document.getElementById('home').classList.remove('active-page');
             document.getElementById('about').classList.remove('active-page');
             document.getElementById('contact').classList.remove('active-page');
-            
-            // Show selected page
             document.getElementById(pageName).classList.add('active-page');
-            
-            // Clear search results when changing pages
             document.getElementById('homeResults').innerHTML = '';
             document.getElementById('searchInput').value = '';
         }
 
-        // Search function
         function searchRecommendations() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             const resultsDiv = document.getElementById('homeResults');
@@ -425,14 +461,12 @@
                 return;
             }
             
-            // Filter recommendations based on search query
             const filtered = recommendations.filter(item => 
                 item.name.toLowerCase().includes(query) || 
                 item.type.toLowerCase().includes(query) ||
                 item.description.toLowerCase().includes(query)
             );
             
-            // Display results
             if (filtered.length > 0) {
                 resultsDiv.innerHTML = '<h2>🔍 Search Results:</h2>' + 
                     filtered.map(item => `
@@ -446,14 +480,29 @@
                 resultsDiv.innerHTML = '<div class="no-results">😔 No destinations found matching "' + query + '". Try: beach, city, mountain, or specific locations like Paris, Bali!</div>';
             }
             
-            // Switch to home page to show results
             showPage('home');
         }
         
-        // Reset search function
         function resetSearch() {
             document.getElementById('searchInput').value = '';
             document.getElementById('homeResults').innerHTML = '';
+        }
+
+        // Email sending function
+        function sendEmail(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            const emailBody = `Name: ${name}%0A%0AEmail: ${email}%0A%0ASubject: ${subject}%0A%0AMessage: ${message}`;
+            const mailtoLink = `mailto:hello@travelwise.com?subject=Contact from ${name} - ${subject}&body=${emailBody}`;
+            
+            window.location.href = mailtoLink;
+            alert(`Thank you ${name}! Your message has been sent. We'll get back to you soon.`);
+            document.getElementById('contactForm').reset();
         }
     </script>
 </body>
