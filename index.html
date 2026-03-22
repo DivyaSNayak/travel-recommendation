@@ -13,23 +13,8 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: -1;
         }
 
         .navbar {
@@ -44,6 +29,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .logo {
@@ -83,13 +69,13 @@
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 25px;
-            width: 200px;
+            width: 250px;
             outline: none;
             font-size: 0.9rem;
         }
 
         .search-container button {
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.5rem;
             border: none;
             border-radius: 25px;
             cursor: pointer;
@@ -104,6 +90,7 @@
 
         .search-btn:hover {
             background-color: #ff5252;
+            transform: scale(1.05);
         }
 
         .reset-btn {
@@ -139,13 +126,6 @@
             font-size: 2.5rem;
         }
 
-        p {
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
         .hero-section {
             text-align: center;
             padding: 2rem 0;
@@ -160,6 +140,7 @@
             font-size: 1.2rem;
             max-width: 800px;
             margin: 1rem auto;
+            color: #555;
         }
 
         .features {
@@ -220,12 +201,35 @@
             border-top: 2px solid #eee;
         }
 
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
         .result-card {
-            background-color: #f8f9fa;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .result-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+        }
+
+        .result-content {
             padding: 1.5rem;
-            margin: 1rem 0;
-            border-radius: 10px;
-            border-left: 4px solid #ff6b6b;
         }
 
         .result-card h3 {
@@ -237,6 +241,7 @@
         .result-card p {
             color: #666;
             margin-bottom: 0.5rem;
+            line-height: 1.5;
         }
 
         .category-badge {
@@ -263,29 +268,7 @@
 
         .results-header h2 {
             color: #2c3e50;
-            font-size: 1.6rem;
-        }
-
-        .team-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 2rem;
-            justify-content: center;
-        }
-
-        .team-card {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .team-card h3 {
-            color: #ff6b6b;
-            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
         }
 
         .instruction-box {
@@ -308,9 +291,8 @@
             .search-container {
                 justify-content: center;
             }
-            .content {
-                margin: 1rem;
-                padding: 1.5rem;
+            .results-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -326,8 +308,8 @@
             <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
         </ul>
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search destinations...">
-            <button class="search-btn" onclick="searchRecommendations()">🔍 Search</button>
+            <input type="text" id="searchInput" placeholder="Search country name... (Italy, Japan, etc)">
+            <button class="search-btn" onclick="searchDestinations()">🔍 Search</button>
             <button class="reset-btn" onclick="resetSearch()">Reset</button>
         </div>
     </nav>
@@ -338,7 +320,7 @@
             <div class="hero-section">
                 <h1>Welcome to TravelWise 🌍</h1>
                 <p>Your ultimate travel companion for discovering amazing destinations around the world!</p>
-                <p>Whether you're looking for serene beaches, majestic mountains, or vibrant city life, we've got you covered. Use the search bar above to find your perfect getaway.</p>
+                
             </div>
             
             <div class="features">
@@ -374,37 +356,11 @@
             <h2>🌟 Our Mission</h2>
             <p>To make travel planning effortless, inspiring, and accessible to everyone. We believe that travel has the power to transform lives and create lasting memories.</p>
             
-            <h2>👥 Our Team</h2>
-            <div class="team-section">
-                <div class="team-card">
-                    <h3>Sarah Johnson</h3>
-                    <p>CEO & Founder</p>
-                    <p>Travel enthusiast with 15+ years of experience</p>
-                </div>
-                <div class="team-card">
-                    <h3>Michael Chen</h3>
-                    <p>Head of Content</p>
-                    <p>Explored 50+ countries worldwide</p>
-                </div>
-                <div class="team-card">
-                    <h3>Emma Rodriguez</h3>
-                    <p>Customer Experience</p>
-                    <p>Passionate about helping travelers</p>
-                </div>
-            </div>
-            
-            <h2>💡 Why Choose Us?</h2>
-            <p>✓ Curated recommendations from real travelers<br>
-            ✓ Insider tips and local insights<br>
-            ✓ 24/7 customer support<br>
-            ✓ Best price guarantee<br>
-            ✓ Sustainable travel options</p>
-            
             <div class="instruction-box">
                 <h3>📌 How to Use TravelWise:</h3>
-                <p>1. Use the search bar above to enter keywords like "beach", "city", "mountain", or specific destinations<br>
-                2. Click the Search button to see personalized recommendations<br>
-                3. Browse through results<br>
+                <p>1. Type a country name in the search bar (e.g., "Italy", "Japan", "Thailand", "Greece")<br>
+                2. Click the Search button to see beautiful destinations with images<br>
+                3. Browse through the results showing different countries with photos<br>
                 4. Use the Reset button to clear your search<br>
                 5. Navigate between pages using the navigation bar</p>
             </div>
@@ -421,7 +377,6 @@
                     <p>📧 <strong>Email:</strong> hello@travelwise.com</p>
                     <p>📞 <strong>Phone:</strong> +1 (555) 123-4567</p>
                     <p>📍 <strong>Address:</strong> 123 Travel Street, Wanderlust City, 10001</p>
-                    <p>🕒 <strong>Hours:</strong> Monday - Friday, 9 AM - 6 PM EST</p>
                     
                     <div class="social-icons" style="justify-content: flex-start; margin-top: 1.5rem;">
                         <a href="#" target="_blank">📘</a>
@@ -445,25 +400,12 @@
                         </div>
                         
                         <div style="margin-bottom: 1rem;">
-                            <label for="subject" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Subject *</label>
-                            <select id="subject" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;">
-                                <option value="">Select a subject</option>
-                                <option value="General Inquiry">General Inquiry</option>
-                                <option value="Booking Support">Booking Support</option>
-                                <option value="Feedback">Feedback</option>
-                            </select>
-                        </div>
-                        
-                        <div style="margin-bottom: 1rem;">
                             <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Message *</label>
                             <textarea id="message" rows="5" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;"></textarea>
                         </div>
                         
                         <button type="submit" style="background-color: #ff6b6b; color: white; padding: 0.75rem 2rem; border: none; border-radius: 25px; cursor: pointer;">
                             📧 Send Message
-                        </button>
-                        <button type="reset" style="background-color: #95a5a6; color: white; padding: 0.75rem 2rem; border: none; border-radius: 25px; cursor: pointer; margin-left: 1rem;">
-                            🗑️ Clear
                         </button>
                     </form>
                 </div>
@@ -472,97 +414,142 @@
     </div>
 
     <script>
-        // Beach destinations data
-        const beachDestinations = [
-            { name: "Bali, Indonesia", type: "beach", description: "Tropical paradise with stunning beaches and spiritual culture. Perfect for surfing and relaxation." },
-            { name: "Santorini, Greece", type: "beach", description: "Beautiful white-washed buildings and breathtaking sunsets with unique volcanic beaches." },
-            { name: "Maldives", type: "beach", description: "Luxury overwater bungalows in crystal clear turquoise waters. Perfect for snorkeling and diving." }
+        // Countries database with reliable images from reliable sources
+        const countries = [
+            {
+                name: "Italy",
+                image: "https://images.pexels.com/photos/3532555/pexels-photo-3532555.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image2: "https://images.pexels.com/photos/2614816/pexels-photo-2614816.jpeg?auto=compress&cs=tinysrgb&w=600",
+                description: "Experience the rich history, amazing pasta, and beautiful coastlines of Italy. Visit Rome, Venice, Florence, and the Amalfi Coast.",
+                attractions: "Colosseum, Vatican City, Venetian Canals, Leaning Tower of Pisa"
+            },
+            {
+                name: "Japan",
+                image: "https://images.pexels.com/photos/2614818/pexels-photo-2614818.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image2: "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=600",
+                description: "A fascinating blend of ancient traditions and futuristic technology. Explore Tokyo, Kyoto, and beautiful Mount Fuji.",
+                attractions: "Mount Fuji, Tokyo Tower, Ancient Temples, Cherry Blossoms"
+            },
+            {
+                name: "Thailand",
+                image: "https://images.pexels.com/photos/2121121/pexels-photo-2121121.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image2: "https://images.pexels.com/photos/2121120/pexels-photo-2121120.jpeg?auto=compress&cs=tinysrgb&w=600",
+                description: "Tropical paradise with stunning beaches, vibrant culture, and delicious street food. Visit Bangkok, Phuket, and Chiang Mai.",
+                attractions: "Phi Phi Islands, Grand Palace, Floating Markets, Elephant Sanctuaries"
+            },
+            {
+                name: "Greece",
+                image: "https://images.pexels.com/photos/462162/pexels-photo-462162.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image2: "https://images.pexels.com/photos/1369996/pexels-photo-1369996.jpeg?auto=compress&cs=tinysrgb&w=600",
+                description: "Beautiful islands with white-washed buildings, ancient history, and crystal clear waters. Explore Santorini, Athens, and Mykonos.",
+                attractions: "Acropolis, Santorini Sunset, Greek Islands, Blue Domes"
+            },
+            {
+                name: "France",
+                image: "https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image2: "https://images.pexels.com/photos/2614812/pexels-photo-2614812.jpeg?auto=compress&cs=tinysrgb&w=600",
+                description: "Romantic cities, world-class cuisine, and iconic landmarks. Visit Paris, French Riviera, and beautiful countryside.",
+                attractions: "Eiffel Tower, Louvre Museum, French Riviera, Notre Dame"
+            },
+            {
+                name: "Australia",
+                image: "https://images.pexels.com/photos/2871475/pexels-photo-2871475.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image2: "https://images.pexels.com/photos/2871477/pexels-photo-2871477.jpeg?auto=compress&cs=tinysrgb&w=600",
+                description: "Stunning beaches, unique wildlife, and vibrant cities. Explore Sydney, Great Barrier Reef, and Melbourne.",
+                attractions: "Sydney Opera House, Great Barrier Reef, Kangaroos, Bondi Beach"
+            },
+            {
+                name: "Brazil",
+                image: "https://images.pexels.com/photos/3182326/pexels-photo-3182326.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image2: "https://images.pexels.com/photos/2437281/pexels-photo-2437281.jpeg?auto=compress&cs=tinysrgb&w=600",
+                description: "Vibrant culture, beautiful rainforests, and lively festivals. Visit Rio de Janeiro, Amazon Rainforest, and Iguazu Falls.",
+                attractions: "Christ the Redeemer, Copacabana Beach, Amazon, Carnival"
+            },
+            {
+                name: "Canada",
+                image: "https://images.pexels.com/photos/147411/pexels-photo-147411.jpeg?auto=compress&cs=tinysrgb&w=600",
+                image2: "https://images.pexels.com/photos/239765/pexels-photo-239765.jpeg?auto=compress&cs=tinysrgb&w=600",
+                description: "Breathtaking natural landscapes, friendly people, and modern cities. Explore Banff, Toronto, and Vancouver.",
+                attractions: "Niagara Falls, Banff National Park, Northern Lights, Rocky Mountains"
+            }
         ];
 
-        // All destinations for other searches
-        const allDestinations = [
-            { name: "Bali, Indonesia", type: "beach", description: "Tropical paradise with stunning beaches and spiritual culture." },
-            { name: "Santorini, Greece", type: "beach", description: "Beautiful white-washed buildings and breathtaking sunsets." },
-            { name: "Maldives", type: "beach", description: "Luxury overwater bungalows in crystal clear waters." },
-            { name: "Paris, France", type: "city", description: "The City of Light with iconic Eiffel Tower and world-class cuisine." },
-            { name: "Tokyo, Japan", type: "city", description: "Futuristic city blending tradition with cutting-edge technology." },
-            { name: "Swiss Alps, Switzerland", type: "mountain", description: "Majestic mountains perfect for skiing and hiking." },
-            { name: "New York, USA", type: "city", description: "The city that never sleeps with endless attractions." },
-            { name: "Phuket, Thailand", type: "beach", description: "Vibrant island with beautiful beaches and nightlife." }
-        ];
-
-        function searchRecommendations() {
+        function searchDestinations() {
             let searchTerm = document.getElementById('searchInput').value;
             let resultsDiv = document.getElementById('homeResults');
             
-            // Convert to lowercase for comparison
             let term = searchTerm.toLowerCase().trim();
             
-            // Clear previous results
             resultsDiv.innerHTML = '';
             
             if (term === '') {
-                resultsDiv.innerHTML = '<div class="no-results">⚠️ Please enter a search term!</div>';
+                resultsDiv.innerHTML = '<div class="no-results">⚠️ Please enter a country name! Try: Italy, Japan, Thailand, Greece, France</div>';
                 return;
             }
             
-            // Check if searching for "beach"
-            if (term === 'beach') {
-                // Show exactly 3 beach destinations
-                resultsDiv.innerHTML = `
-                    <div class="results-header">
-                        <h2>🔍 Search Results: beach</h2>
-                    </div>
-                    <div class="result-card">
-                        <h3>📍 ${beachDestinations[0].name}</h3>
-                        <p>${beachDestinations[0].description}</p>
-                        <div class="category-badge">Category: ${beachDestinations[0].type}</div>
-                    </div>
-                    <div class="result-card">
-                        <h3>📍 ${beachDestinations[1].name}</h3>
-                        <p>${beachDestinations[1].description}</p>
-                        <div class="category-badge">Category: ${beachDestinations[1].type}</div>
-                    </div>
-                    <div class="result-card">
-                        <h3>📍 ${beachDestinations[2].name}</h3>
-                        <p>${beachDestinations[2].description}</p>
-                        <div class="category-badge">Category: ${beachDestinations[2].type}</div>
-                    </div>
-                `;
-                return;
-            }
-            
-            // For other searches, filter from allDestinations
-            let results = allDestinations.filter(item => 
-                item.name.toLowerCase().includes(term) || 
-                item.type.toLowerCase().includes(term) ||
-                item.description.toLowerCase().includes(term)
+            // Filter countries based on search term
+            let results = countries.filter(country => 
+                country.name.toLowerCase().includes(term) || 
+                country.description.toLowerCase().includes(term) ||
+                country.attractions.toLowerCase().includes(term)
             );
             
             if (results.length > 0) {
                 resultsDiv.innerHTML = `
                     <div class="results-header">
-                        <h2>🔍 Search Results: ${searchTerm}</h2>
+                        <h2>🔍 Search Results for "${searchTerm}"</h2>
+                        <p style="color: #666; margin-top: 5px;">Found ${results.length} amazing destination${results.length > 1 ? 's' : ''}!</p>
+                    </div>
+                    <div class="results-grid">
+                        ${results.map(country => `
+                            <div class="result-card">
+                                <img src="${country.image}" alt="${country.name}" class="result-image" onerror="this.src='https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=600'">
+                                <div class="result-content">
+                                    <h3>📍 ${country.name}</h3>
+                                    <p>${country.description}</p>
+                                    <p><strong>✨ Top Attractions:</strong> ${country.attractions}</p>
+                                    <div class="category-badge">🏛️ Country: ${country.name}</div>
+                                </div>
+                            </div>
+                        `).join('')}
                     </div>
                 `;
-                
-                for (let i = 0; i < results.length; i++) {
-                    resultsDiv.innerHTML += `
-                        <div class="result-card">
-                            <h3>📍 ${results[i].name}</h3>
-                            <p>${results[i].description}</p>
-                            <div class="category-badge">Category: ${results[i].type}</div>
-                        </div>
-                    `;
-                }
             } else {
-                resultsDiv.innerHTML = `<div class="no-results">😔 No destinations found matching "${searchTerm}"</div>`;
+                resultsDiv.innerHTML = `
+                    <div class="no-results">
+                        😔 No destinations found matching "${searchTerm}"<br><br>
+                        <strong>Try searching for:</strong><br>
+                        🇮🇹 Italy &nbsp;|&nbsp; 🇯🇵 Japan &nbsp;|&nbsp; 🇹🇭 Thailand &nbsp;|&nbsp; 🇬🇷 Greece &nbsp;|&nbsp; 🇫🇷 France &nbsp;|&nbsp; 🇦🇺 Australia
+                    </div>
+                `;
             }
+            
+            showPage('home');
         }
         
         function resetSearch() {
             document.getElementById('searchInput').value = '';
-            document.getElementById('homeResults').innerHTML = '';
+            document.getElementById('homeResults').innerHTML = `
+                <div class="results-header">
+                    <h2>🌟 Featured Destinations</h2>
+                    <p style="color: #666;">Try searching for any country name above!</p>
+                </div>
+                <div class="results-grid">
+                    ${countries.slice(0, 3).map(country => `
+                        <div class="result-card">
+                            <img src="${country.image}" alt="${country.name}" class="result-image" onerror="this.src='https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=600'">
+                            <div class="result-content">
+                                <h3>📍 ${country.name}</h3>
+                                <p>${country.description.substring(0, 120)}...</p>
+                                <div class="category-badge">🏛️ Country: ${country.name}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div style="text-align: center; margin-top: 2rem; padding: 1rem; background: #e8f4f8; border-radius: 10px;">
+                    💡 <strong>Tip:</strong> Type "Italy" in the search box and click Search to see beautiful Italian destinations with images!
+                </div>
+            `;
         }
         
         function showPage(pageName) {
@@ -570,24 +557,24 @@
             document.getElementById('about').classList.remove('active-page');
             document.getElementById('contact').classList.remove('active-page');
             document.getElementById(pageName).classList.add('active-page');
-            
-            // Clear search results when changing pages
-            if (pageName !== 'home') {
-                document.getElementById('homeResults').innerHTML = '';
-            }
         }
         
         function sendEmail(event) {
             event.preventDefault();
-            alert('Thank you! Your message has been sent.');
+            alert('Thank you! Your message has been sent. We\'ll get back to you soon.');
             document.getElementById('contactForm').reset();
         }
         
-        // Add Enter key support
+        // Add Enter key support for search
         document.getElementById('searchInput').addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
-                searchRecommendations();
+                searchDestinations();
             }
+        });
+        
+        // Display featured destinations on load
+        window.addEventListener('DOMContentLoaded', () => {
+            resetSearch();
         });
     </script>
 </body>
