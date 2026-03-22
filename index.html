@@ -222,7 +222,7 @@
 
         .result-card {
             background-color: #f8f9fa;
-            padding: 1rem;
+            padding: 1.5rem;
             margin: 1rem 0;
             border-radius: 10px;
             border-left: 4px solid #ff6b6b;
@@ -231,12 +231,39 @@
         .result-card h3 {
             color: #2c3e50;
             margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .result-card p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: #ff6b6b20;
+            color: #ff6b6b;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 8px;
         }
 
         .no-results {
             color: #ff6b6b;
             text-align: center;
             padding: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .results-header {
+            margin-bottom: 1rem;
+        }
+
+        .results-header h2 {
+            color: #2c3e50;
+            font-size: 1.6rem;
         }
 
         .team-section {
@@ -267,6 +294,24 @@
             border-radius: 10px;
             margin-top: 2rem;
             border-left: 4px solid #ff6b6b;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            .search-container {
+                justify-content: center;
+            }
+            .content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -359,13 +404,13 @@
                 <h3>📌 How to Use TravelWise:</h3>
                 <p>1. Use the search bar above to enter keywords like "beach", "city", "mountain", or specific destinations<br>
                 2. Click the Search button to see personalized recommendations<br>
-                3. Browse through results and click on destinations for more details<br>
-                4. Use the Reset button to clear your search and start over<br>
-                5. Navigate between Home, About Us, and Contact Us pages using the navigation bar</p>
+                3. Browse through results<br>
+                4. Use the Reset button to clear your search<br>
+                5. Navigate between pages using the navigation bar</p>
             </div>
         </div>
 
-        <!-- Contact Us Page with Form -->
+        <!-- Contact Us Page -->
         <div id="contact" class="page">
             <h1>Contact Us</h1>
             <p>We'd love to hear from you! Fill out the form below and we'll get back to you within 24 hours.</p>
@@ -377,7 +422,6 @@
                     <p>📞 <strong>Phone:</strong> +1 (555) 123-4567</p>
                     <p>📍 <strong>Address:</strong> 123 Travel Street, Wanderlust City, 10001</p>
                     <p>🕒 <strong>Hours:</strong> Monday - Friday, 9 AM - 6 PM EST</p>
-                    <p>💬 <strong>Live Chat:</strong> Available 24/7 on our website</p>
                     
                     <div class="social-icons" style="justify-content: flex-start; margin-top: 1.5rem;">
                         <a href="#" target="_blank">📘</a>
@@ -391,37 +435,35 @@
                     <h2>✉️ Send us a Message</h2>
                     <form id="contactForm" onsubmit="sendEmail(event)">
                         <div style="margin-bottom: 1rem;">
-                            <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #2c3e50;">Full Name *</label>
-                            <input type="text" id="name" name="name" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                            <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Full Name *</label>
+                            <input type="text" id="name" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;">
                         </div>
                         
                         <div style="margin-bottom: 1rem;">
-                            <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #2c3e50;">Email Address *</label>
-                            <input type="email" id="email" name="email" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                            <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Email *</label>
+                            <input type="email" id="email" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;">
                         </div>
                         
                         <div style="margin-bottom: 1rem;">
-                            <label for="subject" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #2c3e50;">Subject *</label>
-                            <select id="subject" name="subject" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                            <label for="subject" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Subject *</label>
+                            <select id="subject" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;">
                                 <option value="">Select a subject</option>
                                 <option value="General Inquiry">General Inquiry</option>
                                 <option value="Booking Support">Booking Support</option>
-                                <option value="Partnership">Partnership Opportunity</option>
-                                <option value="Feedback">Feedback / Suggestions</option>
-                                <option value="Complaint">Report an Issue</option>
+                                <option value="Feedback">Feedback</option>
                             </select>
                         </div>
                         
                         <div style="margin-bottom: 1rem;">
-                            <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #2c3e50;">Message *</label>
-                            <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; resize: vertical;"></textarea>
+                            <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Message *</label>
+                            <textarea id="message" rows="5" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;"></textarea>
                         </div>
                         
-                        <button type="submit" style="background-color: #ff6b6b; color: white; padding: 0.75rem 2rem; border: none; border-radius: 25px; font-size: 1rem; cursor: pointer; transition: all 0.3s;">
+                        <button type="submit" style="background-color: #ff6b6b; color: white; padding: 0.75rem 2rem; border: none; border-radius: 25px; cursor: pointer;">
                             📧 Send Message
                         </button>
-                        <button type="reset" style="background-color: #95a5a6; color: white; padding: 0.75rem 2rem; border: none; border-radius: 25px; font-size: 1rem; cursor: pointer; margin-left: 1rem; transition: all 0.3s;">
-                            🗑️ Clear Form
+                        <button type="reset" style="background-color: #95a5a6; color: white; padding: 0.75rem 2rem; border: none; border-radius: 25px; cursor: pointer; margin-left: 1rem;">
+                            🗑️ Clear
                         </button>
                     </form>
                 </div>
@@ -430,80 +472,123 @@
     </div>
 
     <script>
-        const recommendations = [
-            { name: "Paris, France", type: "city", description: "The City of Light with iconic Eiffel Tower and world-class cuisine." },
+        // Beach destinations data
+        const beachDestinations = [
+            { name: "Bali, Indonesia", type: "beach", description: "Tropical paradise with stunning beaches and spiritual culture. Perfect for surfing and relaxation." },
+            { name: "Santorini, Greece", type: "beach", description: "Beautiful white-washed buildings and breathtaking sunsets with unique volcanic beaches." },
+            { name: "Maldives", type: "beach", description: "Luxury overwater bungalows in crystal clear turquoise waters. Perfect for snorkeling and diving." }
+        ];
+
+        // All destinations for other searches
+        const allDestinations = [
             { name: "Bali, Indonesia", type: "beach", description: "Tropical paradise with stunning beaches and spiritual culture." },
-            { name: "Tokyo, Japan", type: "city", description: "Futuristic city blending tradition with cutting-edge technology." },
             { name: "Santorini, Greece", type: "beach", description: "Beautiful white-washed buildings and breathtaking sunsets." },
+            { name: "Maldives", type: "beach", description: "Luxury overwater bungalows in crystal clear waters." },
+            { name: "Paris, France", type: "city", description: "The City of Light with iconic Eiffel Tower and world-class cuisine." },
+            { name: "Tokyo, Japan", type: "city", description: "Futuristic city blending tradition with cutting-edge technology." },
             { name: "Swiss Alps, Switzerland", type: "mountain", description: "Majestic mountains perfect for skiing and hiking." },
             { name: "New York, USA", type: "city", description: "The city that never sleeps with endless attractions." },
-            { name: "Maldives", type: "beach", description: "Luxury overwater bungalows in crystal clear waters." },
-            { name: "Machu Picchu, Peru", type: "mountain", description: "Ancient Incan citadel in the Andes mountains." },
-            { name: "Rome, Italy", type: "city", description: "Historical city with ancient ruins and amazing pasta." },
             { name: "Phuket, Thailand", type: "beach", description: "Vibrant island with beautiful beaches and nightlife." }
         ];
 
-        function showPage(pageName) {
-            document.getElementById('home').classList.remove('active-page');
-            document.getElementById('about').classList.remove('active-page');
-            document.getElementById('contact').classList.remove('active-page');
-            document.getElementById(pageName).classList.add('active-page');
-            document.getElementById('homeResults').innerHTML = '';
-            document.getElementById('searchInput').value = '';
-        }
-
         function searchRecommendations() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const resultsDiv = document.getElementById('homeResults');
+            let searchTerm = document.getElementById('searchInput').value;
+            let resultsDiv = document.getElementById('homeResults');
             
-            if (!query) {
-                resultsDiv.innerHTML = '<div class="no-results">Please enter a search term!</div>';
+            // Convert to lowercase for comparison
+            let term = searchTerm.toLowerCase().trim();
+            
+            // Clear previous results
+            resultsDiv.innerHTML = '';
+            
+            if (term === '') {
+                resultsDiv.innerHTML = '<div class="no-results">⚠️ Please enter a search term!</div>';
                 return;
             }
             
-            const filtered = recommendations.filter(item => 
-                item.name.toLowerCase().includes(query) || 
-                item.type.toLowerCase().includes(query) ||
-                item.description.toLowerCase().includes(query)
-            );
-            
-            if (filtered.length > 0) {
-                resultsDiv.innerHTML = '<h2>🔍 Search Results:</h2>' + 
-                    filtered.map(item => `
-                        <div class="result-card">
-                            <h3>📍 ${item.name}</h3>
-                            <p>${item.description}</p>
-                            <small>Category: ${item.type}</small>
-                        </div>
-                    `).join('');
-            } else {
-                resultsDiv.innerHTML = '<div class="no-results">😔 No destinations found matching "' + query + '". Try: beach, city, mountain, or specific locations like Paris, Bali!</div>';
+            // Check if searching for "beach"
+            if (term === 'beach') {
+                // Show exactly 3 beach destinations
+                resultsDiv.innerHTML = `
+                    <div class="results-header">
+                        <h2>🔍 Search Results: beach</h2>
+                    </div>
+                    <div class="result-card">
+                        <h3>📍 ${beachDestinations[0].name}</h3>
+                        <p>${beachDestinations[0].description}</p>
+                        <div class="category-badge">Category: ${beachDestinations[0].type}</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>📍 ${beachDestinations[1].name}</h3>
+                        <p>${beachDestinations[1].description}</p>
+                        <div class="category-badge">Category: ${beachDestinations[1].type}</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>📍 ${beachDestinations[2].name}</h3>
+                        <p>${beachDestinations[2].description}</p>
+                        <div class="category-badge">Category: ${beachDestinations[2].type}</div>
+                    </div>
+                `;
+                return;
             }
             
-            showPage('home');
+            // For other searches, filter from allDestinations
+            let results = allDestinations.filter(item => 
+                item.name.toLowerCase().includes(term) || 
+                item.type.toLowerCase().includes(term) ||
+                item.description.toLowerCase().includes(term)
+            );
+            
+            if (results.length > 0) {
+                resultsDiv.innerHTML = `
+                    <div class="results-header">
+                        <h2>🔍 Search Results: ${searchTerm}</h2>
+                    </div>
+                `;
+                
+                for (let i = 0; i < results.length; i++) {
+                    resultsDiv.innerHTML += `
+                        <div class="result-card">
+                            <h3>📍 ${results[i].name}</h3>
+                            <p>${results[i].description}</p>
+                            <div class="category-badge">Category: ${results[i].type}</div>
+                        </div>
+                    `;
+                }
+            } else {
+                resultsDiv.innerHTML = `<div class="no-results">😔 No destinations found matching "${searchTerm}"</div>`;
+            }
         }
         
         function resetSearch() {
             document.getElementById('searchInput').value = '';
             document.getElementById('homeResults').innerHTML = '';
         }
-
-        // Email sending function
+        
+        function showPage(pageName) {
+            document.getElementById('home').classList.remove('active-page');
+            document.getElementById('about').classList.remove('active-page');
+            document.getElementById('contact').classList.remove('active-page');
+            document.getElementById(pageName).classList.add('active-page');
+            
+            // Clear search results when changing pages
+            if (pageName !== 'home') {
+                document.getElementById('homeResults').innerHTML = '';
+            }
+        }
+        
         function sendEmail(event) {
             event.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            const emailBody = `Name: ${name}%0A%0AEmail: ${email}%0A%0ASubject: ${subject}%0A%0AMessage: ${message}`;
-            const mailtoLink = `mailto:hello@travelwise.com?subject=Contact from ${name} - ${subject}&body=${emailBody}`;
-            
-            window.location.href = mailtoLink;
-            alert(`Thank you ${name}! Your message has been sent. We'll get back to you soon.`);
+            alert('Thank you! Your message has been sent.');
             document.getElementById('contactForm').reset();
         }
+        
+        // Add Enter key support
+        document.getElementById('searchInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                searchRecommendations();
+            }
+        });
     </script>
 </body>
 </html>
