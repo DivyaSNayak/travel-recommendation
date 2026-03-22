@@ -126,6 +126,12 @@
             font-size: 2.5rem;
         }
 
+        h2 {
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.8rem;
+        }
+
         .hero-section {
             text-align: center;
             padding: 2rem 0;
@@ -271,12 +277,76 @@
             font-size: 1.8rem;
         }
 
+        /* Team Section Styles */
+        .team-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .team-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .team-role {
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-bio {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
         .instruction-box {
             background: #e8f4f8;
             padding: 1.5rem;
             border-radius: 10px;
             margin-top: 2rem;
             border-left: 4px solid #ff6b6b;
+        }
+
+        .mission-vision {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
         }
 
         @media (max-width: 768px) {
@@ -293,6 +363,9 @@
             }
             .results-grid {
                 grid-template-columns: 1fr;
+            }
+            .team-section {
+                flex-direction: column;
             }
         }
     </style>
@@ -348,7 +421,7 @@
             <div id="homeResults" class="search-results"></div>
         </div>
 
-         <!-- About Us Page - COMPLETE with Team Members -->
+        <!-- About Us Page - UPDATED with Team Members -->
         <div id="about" class="page">
             <h1>About TravelWise</h1>
             <p>At TravelWise, we're passionate about helping travelers discover the world's most incredible destinations. Founded in 2024, our mission is to provide personalized travel recommendations that match your unique preferences.</p>
@@ -401,17 +474,13 @@
             
             <div class="instruction-box">
                 <h3>📌 How to Use TravelWise:</h3>
-                <ul>
-                    <li><strong>Step 1:</strong> Type a country name in the search bar (e.g., "Italy", "Japan", "Thailand")</li>
-                    <li><strong>Step 2:</strong> Click the Search button or press Enter to see destinations with images</li>
-                    <li><strong>Step 3:</strong> Browse through beautiful destination cards with photos and descriptions</li>
-                    <li><strong>Step 4:</strong> Use the Reset button to clear your search and start over</li>
-                    <li><strong>Step 5:</strong> Navigate between Home, About Us, and Contact Us pages using the navigation bar</li>
-                </ul>
-                <p style="margin-top: 1rem; font-style: italic;">💡 <strong>Pro Tip:</strong> Try searching for "Italy" to see beautiful Italian destinations with images, attractions, and travel tips!</p>
+                <p>1. Type a country name in the search bar (e.g., "Italy", "Japan", "Thailand", "Greece")<br>
+                2. Click the Search button to see beautiful destinations with images<br>
+                3. Browse through the results showing different countries with photos<br>
+                4. Use the Reset button to clear your search<br>
+                5. Navigate between pages using the navigation bar</p>
             </div>
         </div>
-       
 
         <!-- Contact Us Page -->
         <div id="contact" class="page">
